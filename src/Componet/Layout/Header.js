@@ -1,19 +1,64 @@
-import { Container, Nav, Navbar } from "react-bootstrap"
-import classes from './Header.module.css';
-import HeaderCartButton from "./HeaderCartButton";
+import { Button, Container, Nav, Navbar } from "react-bootstrap"
+import { NavLink } from "react-router-dom";
+//import classes from './Header.module.css';
 const Header = () => {
-    return(
-        <Navbar fixed='top' bg="dark" expand="sm" variant="dark">
-        <Container className="justify-content-center">
-          <Nav>
-            <Nav.Link className={classes.list}>HOME</Nav.Link>
-            <Nav.Link className={classes.list}>STORE</Nav.Link>
-            <Nav.Link className={classes.list}>ABOUT</Nav.Link>
+  const divStyle = {
+    background: '#777',
+    padding:'40px'
+  };
+  const titleStyle = {
+    fontFamily: 'Times New Roman',
+    fontSize:'100px',
+    color: 'white'
+  };
+  const fontSize = {
+    fontFamily: 'Times New Roman',
+    fontSize:'20px',
+  };
+  return (
+    <>
+      <Navbar sticky="top" bg="dark" variant="dark">
+        <Container fluid style={fontSize}>
+          <Navbar.Brand href="#home">MUSIC</Navbar.Brand>
+          <Nav className="justify-content-center flex-grow-1 pe-3">
+            <Nav.Link className="me-5" to="/home" as={NavLink}>Home</Nav.Link>
+            <Nav.Link className="me-5" to="/store" as={NavLink}>Store</Nav.Link>
+            <Nav.Link className="me-5" to="/about" as={NavLink}>About</Nav.Link>
           </Nav>
+          <Button
+            style={{ width: "3rem", height: "3rem", position: "relative" }}
+            variant="outline-primary"
+            className="rounded-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+              fill="currentColor"
+            >
+              <path d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z" />
+            </svg>
+
+            <div
+              className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+              style={{
+                color: "white",
+                width: "1.5rem",
+                height: "1.5rem",
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                transform: "translate(25%, 25%)",
+              }}
+            >
+              {0}
+            </div>
+          </Button>
         </Container>
-        <HeaderCartButton></HeaderCartButton>
       </Navbar>
-    )
+      <Container fluid className="text-center" style={divStyle}>
+        <h1 style={titleStyle}>The Genrics</h1>
+      </Container>
+    </>
+  );
 }
 
 export default Header;
