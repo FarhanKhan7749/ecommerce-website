@@ -1,5 +1,6 @@
 //import './App.css';
 //import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import Header from './Componet/Layout/Header';
 import About from './Pages/About';
@@ -12,11 +13,13 @@ function App() {
     // </Container>
     <div>
       <Header></Header>
-      <Routes>
-      <Route path='/home' element={<Home />}>Store</Route>
-      <Route path='/store' element={<Store />}>Store</Route>
-      <Route path='/about' element={<About />}>Store</Route>
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path='/home' element={<Home />} />
+          <Route path='/store' element={<Store />} />
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </Container>
     </div>
   );
 }
