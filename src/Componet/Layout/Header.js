@@ -1,7 +1,7 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap"
 import { NavLink } from "react-router-dom";
 //import classes from './Header.module.css';
-const Header = () => {
+const Header = (props) => {
   const divStyle = {
     background: '#777',
     padding:'40px'
@@ -25,7 +25,7 @@ const Header = () => {
             <Nav.Link className="me-5" to="/store" as={NavLink}>Store</Nav.Link>
             <Nav.Link className="me-5" to="/about" as={NavLink}>About</Nav.Link>
           </Nav>
-          <Button
+          <Button onClick={props.onOpen}
             style={{ width: "3rem", height: "3rem", position: "relative" }}
             variant="outline-primary"
             className="rounded-circle">

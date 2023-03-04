@@ -15,7 +15,7 @@ const StoreItem = (props) =>{
         </Card.Img>
         <Card.Body className="d-flex flex-column">
           <Card.Title className="d-flex justify-content-between align-items-baseline">
-            <spam className="ms-2 text-muted">Price ${props.itemPrice.toFixed(2)}</spam>
+            <span className="ms-2 text-muted">Price ${props.itemPrice.toFixed(2)}</span>
             <Button className="">Add to Cart</Button>
           </Card.Title>
         </Card.Body>
