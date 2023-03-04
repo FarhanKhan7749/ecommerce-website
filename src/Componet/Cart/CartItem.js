@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Button, Stack, Image } from "react-bootstrap";
+import CartContext from "../../store/cart-context";
 
 const fonstStyle = {
   fontFamily: "Times New Roman",
@@ -13,9 +15,12 @@ const inputStyle = {
   marginRight: "20px",
 };
 const Cartitem = (props) => {
-
+    const cartCntx = useContext(CartContext);
     const inputChnageHnadler = (event) => {
         console.log(event.target.value)
+    }
+    const cartItemRemoveHandler = () => {
+      cartCntx.removeItem(props.id);
     }
   return (
     <Stack direction="horizontal" gap={2}>
@@ -34,7 +39,7 @@ const Cartitem = (props) => {
       <h3 style={fonstStyle}>Quantity</h3>
       <div className="d-flex align-items-center">
         <input type="text" value={props.itemQuantity} onChange={inputChnageHnadler} className="form-control me-2" style={inputStyle} />
-        <Button variant="danger">Remove</Button>
+        <Button variant="danger" onClick={cartItemRemoveHandler}>Remove</Button>
       </div>
     </div>
   </Stack>
