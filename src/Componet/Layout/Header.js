@@ -1,20 +1,28 @@
+import { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap"
 import { NavLink } from "react-router-dom";
+import CartContext from "../../store/cart-context";
 //import classes from './Header.module.css';
+const divStyle = {
+  background: '#777',
+  padding:'40px'
+};
+const titleStyle = {
+  fontFamily: 'Times New Roman',
+  fontSize:'100px',
+  color: 'white'
+};
+const fontSize = {
+  fontFamily: 'Times New Roman',
+  fontSize:'20px',
+};
+
 const Header = (props) => {
-  const divStyle = {
-    background: '#777',
-    padding:'40px'
-  };
-  const titleStyle = {
-    fontFamily: 'Times New Roman',
-    fontSize:'100px',
-    color: 'white'
-  };
-  const fontSize = {
-    fontFamily: 'Times New Roman',
-    fontSize:'20px',
-  };
+  const cartCntx = useContext(CartContext);
+
+  const numberOfCartItems = cartCntx.items.reduce((curNumber,item)=>{
+    return curNumber + item.amount;
+  },0)
   return (
     <>
       <Navbar sticky="top" bg="dark" variant="dark">
@@ -49,7 +57,7 @@ const Header = (props) => {
                 transform: "translate(25%, 25%)",
               }}
             >
-              {0}
+              {numberOfCartItems}
             </div>
           </Button>
         </Container>

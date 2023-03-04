@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Offcanvas, Stack } from "react-bootstrap"
+import { useContext, useState } from "react";
+import { Button, Offcanvas, Stack } from "react-bootstrap"
+import CartContext from "../../store/cart-context";
 import Cartitem from "./CartItem";
 const fonstStyle = {
     fontFamily: "Times New Roman",
 }
 const Cart = (props) => {
+    const cartCntx = useContext(CartContext);
     const cartElements = [
         {
             tag: "Album 1",
@@ -41,6 +43,7 @@ const Cart = (props) => {
             updateItems(itemsCopy);
         }
     };
+    console.log(cartCntx.items)
     return (
         <Offcanvas show={props.show} onHide={props.onClose} placement="end" style={fonstStyle}>
             <Offcanvas.Header closeButton>
@@ -48,18 +51,25 @@ const Cart = (props) => {
             </Offcanvas.Header>
             <Offcanvas.Body>
                 <Stack gap={3}>
-                    {items.map(item => {
+                    {cartCntx.items.map(item => {
                         return <Cartitem
-                            key={item.title}
-                            itemImg={item.imageUrl}
+                            key={item.id}
+                            itemImg={item.imgUrl}
                             imageTitle={item.title}
                             itemPrice={item.price}
                             itemTag={item.tag}
-                            onRemove={removeItemFromCartHandler}
+                            itemQuantity={item.quantity}
                         />
                     })}
-                    <div className="ms-auto fw-bold fs-5">
-                        <span>Total Price is ${totalPrice}</span>
+                    {console.log(cartCntx.items)}
+                    <div className="ms-auto fw-bold fs-2 m-4 text-muted">
+                        <span>Total Price is ${cartCntx.totalAmount}</span>
+                    </div>
+                    <div className="text-center">
+                        <Button 
+                            variant="primary"
+                            style={{ width: "8rem", height: "3rem", position: "relative"}}
+                        >PURCHASE</Button>
                     </div>
                 </Stack>
             </Offcanvas.Body>

@@ -33,8 +33,8 @@ const Cartitem = (props) => {
     <div className="me-auto">
       <h3 style={fonstStyle}>Quantity</h3>
       <div className="d-flex align-items-center">
-        <input type="text" value="1" onChange={inputChnageHnadler} className="form-control me-2" style={inputStyle} />
-        <Button variant="danger" onClick={props.onRemove}>Remove</Button>
+        <input type="text" value={props.itemQuantity} onChange={inputChnageHnadler} className="form-control me-2" style={inputStyle} />
+        <Button variant="danger">Remove</Button>
       </div>
     </div>
   </Stack>
