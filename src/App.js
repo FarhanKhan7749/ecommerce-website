@@ -7,6 +7,7 @@ import About from './Pages/About';
 import Home from './Pages/Home';
 import Store from './Pages/Store';
 import Cart from './Componet/Cart/Cart';
+import Footer from './Componet/Layout/Footer';
 function App() {
   const [showCart,setShowCart] = useState(false)
   const onShowCartHandler = () =>{
@@ -26,10 +27,11 @@ function App() {
       <Container>
         <Routes>
           <Route path='/home' element={<Home />} />
-          <Route path='/store' element={<Store />} />
+          <Route path='/' element={<Store />} />
           <Route path='/about' element={<About />} />
         </Routes>
       </Container>
+      <Footer />
     </div>
   );
 }
