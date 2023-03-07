@@ -27,7 +27,7 @@ const Header = (props) => {
     <>
       <Navbar sticky="top" bg="dark" variant="dark">
         <Container fluid style={fontSize}>
-          <Navbar.Brand href="#home">MUSIC</Navbar.Brand>
+          <Navbar.Brand href="/home">MUSIC</Navbar.Brand>
           <Nav className="justify-content-center flex-grow-1 pe-3">
             <Nav.Link className="me-5" to="/home" as={NavLink}>Home</Nav.Link>
             <Nav.Link className="me-5" to="/" as={NavLink}>Store</Nav.Link>

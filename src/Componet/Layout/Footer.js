@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="mt-5">
+    <div className="mt-5" fluid>
       <Navbar sticky="bottom" bg="dark" variant="dark" className="p-5 navbar navbar-default navbar-fixed-bottom">
         <Container className="w-60">
-          <Navbar.Brand href="#home" className="fs-1 p-2">
+          <Navbar.Brand href="/home" className="fs-1 p-2">
             The Generics
           </Navbar.Brand>
           <Nav className="justify-content-end flex-grow-1 pe-3">
