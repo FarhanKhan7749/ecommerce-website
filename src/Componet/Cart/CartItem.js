@@ -32,11 +32,11 @@ const Cartitem = (props) => {
       </div>
     </div>
     <div className="me-auto">
-      <h3 style={fonstStyle}>Price</h3>
+      <h3 style={fonstStyle}>PRICE</h3>
       <span>${props.itemPrice.toFixed(2)}</span>
     </div>
     <div className="me-auto">
-      <h3 style={fonstStyle}>Quantity</h3>
+      <h3 style={fonstStyle}>QUANTITY</h3>
       <div className="d-flex align-items-center">
         <input type="text" value={props.itemQuantity} onChange={inputChnageHnadler} className="form-control me-2" style={inputStyle} />
         <Button variant="danger" onClick={cartItemRemoveHandler}>Remove</Button>

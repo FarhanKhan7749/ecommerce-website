@@ -20,9 +20,10 @@ const fontSize = {
 const Header = (props) => {
   const cartCntx = useContext(CartContext);
 
-  const numberOfCartItems = cartCntx.items.reduce((curNumber,item)=>{
+  const numberOfCartItems = cartCntx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
-  },0)
+  }, 0);
+  console.log(cartCntx.items.amount);
   return (
     <>
       <Navbar sticky="top" bg="dark" variant="dark">

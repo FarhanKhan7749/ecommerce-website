@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="mt-5" fluid>
+    <div className="mt-5" fluid="true">
       <Navbar sticky="bottom" bg="dark" variant="dark" className="p-5 navbar navbar-default navbar-fixed-bottom">
         <Container className="w-60">
           <Navbar.Brand href="/home" className="fs-1 p-2">
@@ -17,7 +17,7 @@ const Footer = () => {
                   width="48"
                   height="48"
                   fill="currentColor"
-                  class="bi bi-youtube"
+                  className="bi bi-youtube"
                   viewBox="0 0 16 16"
                 >
                   {" "}
@@ -32,7 +32,7 @@ const Footer = () => {
                   width="48"
                   height="48"
                   fill="currentColor"
-                  class="bi bi-spotify"
+                  className="bi bi-spotify"
                   viewBox="0 0 16 16"
                 >
                   {" "}
@@ -47,7 +47,7 @@ const Footer = () => {
                   width="48"
                   height="48"
                   fill="currentColor"
-                  class="bi bi-facebook"
+                  className="bi bi-facebook"
                   viewBox="0 0 16 16"
                 >
                   {" "}

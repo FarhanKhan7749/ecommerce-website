@@ -40,6 +40,6 @@
   "devDependencies": {
     "i": "^0.3.7",
     "npm": "^9.6.0",
-    "react-router-dom": "^6.8.2"
+    "react-router-dom": "^6.9.0"
   }
 }
