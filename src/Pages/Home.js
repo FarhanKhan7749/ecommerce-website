@@ -1,8 +1,8 @@
 import { Button, Col, Container, Row, Stack } from "react-bootstrap";
-const divStyle = {
-  background: "#777",
-  padding: "40px",
-};
+// const divStyle = {
+//   background: "#777",
+//   padding: "40px",
+// };
 const ColoredLine = ({ color }) => (
     <hr
         style={{

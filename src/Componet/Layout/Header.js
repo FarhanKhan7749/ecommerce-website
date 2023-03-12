@@ -28,11 +28,12 @@ const Header = (props) => {
     <>
       <Navbar sticky="top" bg="dark" variant="dark">
         <Container fluid style={fontSize}>
-          <Navbar.Brand href="/home">MUSIC</Navbar.Brand>
+          <Navbar.Brand href="/home">The Generics</Navbar.Brand>
           <Nav className="justify-content-center flex-grow-1 pe-3">
-            <Nav.Link className="me-5" to="/home" as={NavLink}>Home</Nav.Link>
-            <Nav.Link className="me-5" to="/" as={NavLink}>Store</Nav.Link>
-            <Nav.Link className="me-5" to="/about" as={NavLink}>About</Nav.Link>
+            <Nav.Link className="me-3" to="/home" as={NavLink}>Home</Nav.Link>
+            <Nav.Link className="me-3" to="/" as={NavLink}>Store</Nav.Link>
+            <Nav.Link className="me-3" to="/about" as={NavLink}>About</Nav.Link>
+            <Nav.Link className="me-3" to="/ContactUs" as={NavLink}>Contact Us</Nav.Link>
           </Nav>
           <Button onClick={props.onOpen}
             style={{ width: "3rem", height: "3rem", position: "relative" }}

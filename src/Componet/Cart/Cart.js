@@ -45,36 +45,54 @@ const Cart = (props) => {
     // };
     // console.log(cartCntx.items)
     return (
-        <Offcanvas show={props.show} onHide={props.onClose} placement="end" style={fonstStyle}>
-            <Offcanvas.Header closeButton>
-                <Offcanvas.Title className="fs-2" style={fonstStyle}>Cart</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-                <Stack gap={3}>
-                    {cartCntx.items.map(item => {
-                        return <Cartitem
-                            key={item.id}
-                            id={item.id}
-                            itemImg={item.imgUrl}
-                            imageTitle={item.title}
-                            itemPrice={item.price}
-                            itemTag={item.tag}
-                            itemQuantity={item.amount}
-                        />
-                    })}
-                    <div className="ms-auto fw-bold fs-2 m-4 text-muted">
-                        <span>Total Price is ${cartCntx.totalAmount}</span>
-                    </div>
-                    <div className="text-center">
-                        <Button 
-                            variant="primary"
-                            style={{ width: "8rem", height: "3rem", position: "relative"}}
-                        >PURCHASE</Button>
-                    </div>
-                </Stack>
-            </Offcanvas.Body>
+        <Offcanvas
+          show={props.show}
+          onHide={props.onClose}
+          placement="end"
+          style={{
+            ...fonstStyle,
+            width: `${Math.min(800, 400 + 80 * cartCntx.items.length)}px`,
+          }}
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title className="fs-2" style={fonstStyle}>
+              Cart
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Stack gap={3}>
+              {cartCntx.items.map((item) => {
+                return (
+                  <Cartitem
+                    key={item.id}
+                    id={item.id}
+                    itemImg={item.imgUrl}
+                    imageTitle={item.title}
+                    itemPrice={item.price}
+                    itemTag={item.tag}
+                    itemQuantity={item.amount}
+                  />
+                );
+              })}
+              <div className="ms-auto fw-bold fs-2 m-4 text-muted">
+                <span>Total Price is ${cartCntx.totalAmount}</span>
+              </div>
+              <div className="text-center">
+                <Button
+                  variant="primary"
+                  style={{
+                    width: "8rem",
+                    height: "3rem",
+                    position: "relative",
+                  }}
+                >
+                  PURCHASE
+                </Button>
+              </div>
+            </Stack>
+          </Offcanvas.Body>
         </Offcanvas>
-    )
+      );
 }
 
 export default Cart;
