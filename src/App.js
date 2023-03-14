@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Componet/Layout/Header';
 import About from './Pages/About';
 import Home from './Pages/Home';
@@ -10,6 +10,7 @@ import Store from './Pages/Store';
 import Cart from './Componet/Cart/Cart';
 import Footer from './Componet/Layout/Footer';
 import ContactUs from './Pages/ContactUsPage';
+import ProductDetails from './Componet/StoreItem/PrductDetails';
 function App() {
   const [showCart, setShowCart] = useState(false)
   const onShowCartHandler = () => {
@@ -28,7 +29,7 @@ function App() {
       {showCart && <Cart show={showCart} onClose={onHideCartHandler}></Cart>}
       <Header onOpen={onShowCartHandler}></Header>
       <Container>
-        <React.Fragment>
+        <Switch>
           <Route path="/home">
             <Home />
           </Route>
@@ -41,7 +42,10 @@ function App() {
           <Route path="/ContactUs" exact>
             <ContactUs />
           </Route>
-        </React.Fragment>
+          <Route path="/store/:productId" exact>
+            <ProductDetails />
+          </Route>
+        </Switch>
       </Container>
       <Footer />
     </div>
