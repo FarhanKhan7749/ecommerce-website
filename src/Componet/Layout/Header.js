@@ -1,7 +1,9 @@
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Container, Nav, Navbar } from "react-bootstrap"
 import { NavLink } from "react-router-dom";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-context";
 //import classes from './Header.module.css';
 const divStyle = {
   background: '#777',
@@ -20,23 +22,33 @@ const fontSize = {
 const Header = (props) => {
   const cartCntx = useContext(CartContext);
 
+  const authCtx = useContext(AuthContext);
+
+  const history = useHistory();
+  
+  const logoutHandler = () => {
+    authCtx.logout();
+    history.replace("/login");
+  }
+
   const numberOfCartItems = cartCntx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
   //console.log(cartCntx.items.amount);
   return (
     <>
+      {console.log(authCtx)}
       <Navbar sticky="top" bg="dark" variant="dark">
         <Container fluid style={fontSize}>
           <Navbar.Brand href="/home">The Generics</Navbar.Brand>
-          <Nav className="justify-content-center flex-grow-1 pe-3">
+          <Nav className="d-flex justify-content-center flex-grow-1">
             <Nav.Link className="me-2" to="/home" as={NavLink}>Home</Nav.Link>
-            <Nav.Link className="me-2" to="/" as={NavLink}>Store</Nav.Link>
+            {authCtx.isLoggedin && <Nav.Link className="me-2" to="/store" as={NavLink}>Store</Nav.Link>}
             <Nav.Link className="me-2" to="/about" as={NavLink}>About</Nav.Link>
-            <Nav.Link className="me-2" to="/login" as={NavLink}>Login</Nav.Link>
+            {!authCtx.isLoggedin && <Nav.Link className="me-2" to="/login" as={NavLink}>Login</Nav.Link>}
             <Nav.Link className="me-2" to="/ContactUs" as={NavLink}>Contact Us</Nav.Link>
           </Nav>
-          <Button onClick={props.onOpen}
+          {authCtx.isLoggedin && <Button  onClick={props.onOpen}
             style={{ width: "3rem", height: "3rem", position: "relative" }}
             variant="outline-primary"
             className="rounded-circle">
@@ -62,11 +74,15 @@ const Header = (props) => {
             >
               {numberOfCartItems}
             </div>
-          </Button>
+          </Button>}
+          {authCtx.isLoggedin && <Button
+            onClick={logoutHandler}
+            variant="outline-primary"
+            className="m-1 rounded">Logout</Button>}
         </Container>
       </Navbar>
       <Container fluid className="text-center" style={divStyle}>
-        <h1 style={titleStyle}>The Genrics</h1>
+        <h1 style={titleStyle} className="text-center">The Genrics</h1>
       </Container>
     </>
   );
