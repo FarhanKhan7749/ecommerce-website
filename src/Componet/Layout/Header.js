@@ -23,17 +23,18 @@ const Header = (props) => {
   const numberOfCartItems = cartCntx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
-  console.log(cartCntx.items.amount);
+  //console.log(cartCntx.items.amount);
   return (
     <>
       <Navbar sticky="top" bg="dark" variant="dark">
         <Container fluid style={fontSize}>
           <Navbar.Brand href="/home">The Generics</Navbar.Brand>
           <Nav className="justify-content-center flex-grow-1 pe-3">
-            <Nav.Link className="me-3" to="/home" as={NavLink}>Home</Nav.Link>
-            <Nav.Link className="me-3" to="/" as={NavLink}>Store</Nav.Link>
-            <Nav.Link className="me-3" to="/about" as={NavLink}>About</Nav.Link>
-            <Nav.Link className="me-3" to="/ContactUs" as={NavLink}>Contact Us</Nav.Link>
+            <Nav.Link className="me-2" to="/home" as={NavLink}>Home</Nav.Link>
+            <Nav.Link className="me-2" to="/" as={NavLink}>Store</Nav.Link>
+            <Nav.Link className="me-2" to="/about" as={NavLink}>About</Nav.Link>
+            <Nav.Link className="me-2" to="/login" as={NavLink}>Login</Nav.Link>
+            <Nav.Link className="me-2" to="/ContactUs" as={NavLink}>Contact Us</Nav.Link>
           </Nav>
           <Button onClick={props.onOpen}
             style={{ width: "3rem", height: "3rem", position: "relative" }}

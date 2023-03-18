@@ -11,6 +11,7 @@ import Cart from './Componet/Cart/Cart';
 import Footer from './Componet/Layout/Footer';
 import ContactUs from './Pages/ContactUsPage';
 import ProductDetails from './Componet/StoreItem/PrductDetails';
+import AuthForm from './Auth/AuthForm';
 function App() {
   const [showCart, setShowCart] = useState(false)
   const onShowCartHandler = () => {
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/ContactUs" exact>
             <ContactUs />
+          </Route>
+          <Route path="/login" exact>
+            <AuthForm />
           </Route>
           <Route path="/store/:productId" exact>
             <ProductDetails />
