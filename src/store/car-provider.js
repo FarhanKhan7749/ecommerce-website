@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import CartContext from "./cart-context";
 
 // const defaultCartState = {
@@ -75,26 +75,61 @@ const CartProvider = (props) => {
 
     const [items, updateItems] = useState([]);
 
+    useEffect(() => {
+        // Fetch the items from the API
+        fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items")
+            .then((response) => response.json())
+            .then((data) => updateItems(data))
+            .catch((error) => console.log(error));
+    }, []);
+
     const addItemToCartHandler = (item) => {
-        let itemsCopy = [...items]
+        let itemsCopy = [...items];
         let itemIndex = itemsCopy.findIndex((i) => i.id === item.id);
         if (itemIndex === -1) {
+            // Add the item to the cart
             updateItems([...items, item]);
+
+            // Post the item to the API
+            fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(item),
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.log(error));
         } else {
-            itemsCopy[itemIndex].amount = parseInt(itemsCopy[itemIndex].amount) + parseInt(item.amount);
-            itemsCopy[itemIndex].totalPrice = itemsCopy[itemIndex].quantity * itemsCopy[itemIndex].price;
-            console.log(itemsCopy)
+            itemsCopy[itemIndex].amount =
+                parseInt(itemsCopy[itemIndex].amount) + parseInt(item.amount);
+            itemsCopy[itemIndex].totalPrice =
+                itemsCopy[itemIndex].quantity * itemsCopy[itemIndex].price;
+            console.log(itemsCopy);
             updateItems(itemsCopy);
         }
     };
 
     const removeItemFromCartHandler = (id) => {
         const itemsCopy = [...items];
-        const idx = itemsCopy.findIndex((i) => i.id === id);
+        const idx = itemsCopy.findIndex((i) => i._id === id);
 
         if (idx !== -1 && itemsCopy[idx].amount < 2) {
+            // Remove the item from the cart
             itemsCopy.splice(idx, 1);
             updateItems(itemsCopy);
+
+            // Delete the item from the API
+            fetch(
+                `https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items/${id}`,
+                {
+                    method: "DELETE",
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.log(error));
         } else {
             itemsCopy[idx].amount--;
             updateItems(itemsCopy);
@@ -104,15 +139,15 @@ const CartProvider = (props) => {
     let totalPrice = 0;
     items.forEach((item) => {
         totalPrice = totalPrice + Number(item.price * item.amount);
-        console.log(item.amount)
+        console.log(item.amount);
     });
 
     const cartContext = {
         items: items,
         totalAmount: totalPrice.toFixed(2),
         addItem: addItemToCartHandler,
-        removeItem: removeItemFromCartHandler
-    }
+        removeItem: removeItemFromCartHandler,
+    };
     return (
         <CartContext.Provider value={cartContext}>
             {props.children}
