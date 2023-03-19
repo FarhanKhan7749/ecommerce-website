@@ -37,7 +37,6 @@ const Header = (props) => {
   //console.log(cartCntx.items.amount);
   return (
     <>
-      {console.log(authCtx)}
       <Navbar sticky="top" bg="dark" variant="dark">
         <Container fluid style={fontSize}>
           <Navbar.Brand href="/home">The Generics</Navbar.Brand>
