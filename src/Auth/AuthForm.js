@@ -36,8 +36,8 @@ const AuthForm = () => {
             setIsLoading(false);
             if (response.ok) {
                 const data = await response.json();
-                authCtx.login(data.idToken);
-                history.replace('/');
+                authCtx.login(data.idToken, enteredEmail);
+                history.replace('/store');
             } else {
                 let errorMessage = 'Authentication failed!';
                 throw new Error(errorMessage);

@@ -1,6 +1,7 @@
 import { useReducer, useState, useEffect } from "react";
 import CartContext from "./cart-context";
-
+import AuthContext from "./auth-context";
+import { useContext } from "react";
 // const defaultCartState = {
 //     items: [],
 //     totalAmount: 0,
@@ -72,16 +73,16 @@ const CartProvider = (props) => {
     //     addItem: addItemToCartHandler,
     //     removeItem: removeItemFromCartHandler
     // }
-
+    const authCtx = useContext(AuthContext);
     const [items, updateItems] = useState([]);
 
     useEffect(() => {
         // Fetch the items from the API
-        fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items")
+        fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/" + authCtx.email)
             .then((response) => response.json())
             .then((data) => updateItems(data))
             .catch((error) => console.log(error));
-    }, []);
+    }, [authCtx.email]);
 
     const addItemToCartHandler = (item) => {
         let itemsCopy = [...items];
@@ -91,7 +92,7 @@ const CartProvider = (props) => {
             updateItems([...items, item]);
 
             // Post the item to the API
-            fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items", {
+            fetch("https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/"+ authCtx.email, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -122,7 +123,7 @@ const CartProvider = (props) => {
 
             // Delete the item from the API
             fetch(
-                `https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/items/${id}`,
+                `https://crudcrud.com/api/789c1489c0fa4aaebab25d0b9e7f00bd/${authCtx.email}/${id}`,
                 {
                     method: "DELETE",
                 }
