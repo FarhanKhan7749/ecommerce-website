@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const StoreItem = (props) => {
   const cartCntx = useContext(CartContext);
   //const [showAlert, setShowAlert] = useState(false);
-
   const addToCartHandler = (event) => {
     event.preventDefault();
     cartCntx.addItem({
