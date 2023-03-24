@@ -83,7 +83,7 @@ const CartProvider = (props) => {
 
     useEffect(() => {
         // Fetch the items from the API
-        fetch("https://crudcrud.com/api/660e8a7d34c642f1a2f4eacad367aa39/" + email)
+        fetch("https://crudcrud.com/api/fb96b3b6353045b797d49a1ac1bbadb7/" + email)
             .then((response) => response.json())
             .then((data) => updateItems(data))
             .catch((error) => console.log(error));
@@ -97,7 +97,7 @@ const CartProvider = (props) => {
             updateItems([...items, item]);
 
             // Post the item to the API
-            fetch("https://crudcrud.com/api/660e8a7d34c642f1a2f4eacad367aa39/"+ email, {
+            fetch("https://crudcrud.com/api/fb96b3b6353045b797d49a1ac1bbadb7/"+ email, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const CartProvider = (props) => {
 
             // Delete the item from the API
             fetch(
-                `https://crudcrud.com/api/660e8a7d34c642f1a2f4eacad367aa39/${email}/${id}`,
+                `https://crudcrud.com/api/fb96b3b6353045b797d49a1ac1bbadb7/${email}/${id}`,
                 {
                     method: "DELETE",
                 }
